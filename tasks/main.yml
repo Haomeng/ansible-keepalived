@@ -7,6 +7,10 @@
   tags: keepalived
   notify: restart keepalived
 
+- name: Add haproxy (1.6) apt repository
+  apt_repository: repo="ppa:vbernat/haproxy-1.6"
+  when: ansible_os_family == "Debian"
+  
 - name: Install keepalived (debian/ubuntu)
   apt: name=keepalived state=latest
   when: ansible_os_family == "Debian"
